@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube Channel Dashboard</title>
+  <!-- Modern, clean font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Channel Dashboard</h1>
+
+    <!-- Channel Stats -->
+    <section id="channelStats" class="stats">
+      <p class="loading">Loading channel stats...</p>
+    </section>
+
+    <!-- Upload Frequency -->
+    <section id="uploadFrequency" class="stats">
+      <p class="loading">Calculating upload frequencies...</p>
+    </section>
+
+    <!-- Additional Data (VPH, highest/lowest) -->
+    <section id="additionalData" class="stats">
+      <p class="loading">Fetching additional video metrics...</p>
+    </section>
+
+    <!-- Uploads Over Time Chart -->
+    <section class="chart-container">
+      <h2>Uploads Over Time</h2>
+      <canvas id="uploadTrendChart"></canvas>
+    </section>
+
+    <!-- Video VPH Trend Chart -->
+    <section class="chart-container">
+      <h2>Video VPH Trend</h2>
+      <canvas id="vphChart"></canvas>
+    </section>
+
+    <!-- Subscriber Growth Chart -->
+    <section id="subscriberGrowth" class="stats">
+      <h2>Subscriber Growth</h2>
+      <canvas id="subscriberGrowthChart"></canvas>
+    </section>
+
+    <!-- Top Videos Table -->
+    <section id="topVideos" class="stats">
+      <p class="loading">Loading top performing videos...</p>
+    </section>
+
+    <!-- Collapsible Videos Section -->
+    <details open class="stats">
+      <summary>Videos</summary>
+      <div id="videoGridContainer"></div>
+    </details>
+
+    <!-- Collapsible Shorts Section -->
+    <details open class="stats">
+      <summary>YouTube Shorts</summary>
+      <div id="shortsContainer"></div>
+    </details>
+
+    <!-- Collapsible Posts Section -->
+    <details open class="stats">
+      <summary>Posts</summary>
+      <div id="channelPostsContainer">
+        <p class="loading">Loading posts...</p>
+      </div>
+    </details>
+
+    <!-- Recent Comments -->
+    <section id="recentComments" class="stats">
+      <p class="loading">Loading recent comments from the latest video...</p>
+    </section>
+
+    <!-- Alerts -->
+    <section id="alerts" class="stats">
+      <h2>Alerts & Notifications</h2>
+      <div id="alertsContainer"><p>No alerts.</p></div>
+    </section>
+
+    <!-- Export Subscriber Data -->
+    <section id="exportData" class="stats">
+      <h2>Export Historical Subscriber Data</h2>
+      <button id="exportButton">Export as CSV</button>
+      <pre id="exportOutput"></pre>
+    </section>
+
+    <!-- Predictive Analytics -->
+    <section id="predictions" class="stats">
+      <h2>Predictive Analytics</h2>
+      <div id="predictionsContainer">
+        <p>Predicted subscriber count in 24 hours: <span id="predictedSubscribers"></span></p>
+      </div>
+    </section>
+
+    <!-- Placeholders for Advanced Features -->
+    <section id="advancedAnalytics" class="stats">
+      <h2>Advanced Analytics</h2>
+      <p>
+        Detailed audience demographics, watch time, revenue estimates, and traffic sources require integration with the YouTube Analytics API.
+      </p>
+    </section>
+
+    <section id="customLayout" class="stats">
+      <h2>Customizable Layout</h2>
+      <p>Coming soon: Drag-and-drop widgets and theme customization!</p>
+    </section>
+
+    <section id="crossChannel" class="stats">
+      <h2>Cross-Channel Comparisons</h2>
+      <p>Feature requires integration of additional channel data.</p>
+    </section>
+  </div>
+
+  <!-- Link to JS -->
+  <script src="script.js"></script>
+</body>
+</html>
