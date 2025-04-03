@@ -2,123 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YouTube Channel Dashboard</title>
-  <!-- Modern, clean font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Link to CSS -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beers To Drink Counter</title>
+  <style>
+    /* Basic reset and box sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Body styles for centering and a neat gradient background */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #c0c0c0);
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Container for our counter content */
+    .container {
+      text-align: center;
+      padding: 2em;
+      border: 2px solid #333;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    .counter {
+      font-size: 4em;
+      margin: 0.5em 0;
+    }
+    /* Button styling */
+    button {
+      padding: 0.8em 1.5em;
+      margin: 0.5em;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    .increment {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .decrement {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    .reset {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .toggle-mode {
+      background-color: #ffc107;
+      color: #fff;
+    }
+    /* Dark mode styles */
+    .dark-mode {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: #ecf0f1;
+    }
+    .dark-mode .container {
+      background-color: #3b4a59;
+      border-color: #ecf0f1;
+    }
+    .dark-mode button {
+      color: #ecf0f1;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>YouTube Channel Dashboard</h1>
-
-    <!-- Channel Stats -->
-    <section id="channelStats" class="stats">
-      <p class="loading">Loading channel stats...</p>
-    </section>
-
-    <!-- Upload Frequency -->
-    <section id="uploadFrequency" class="stats">
-      <p class="loading">Calculating upload frequencies...</p>
-    </section>
-
-    <!-- Additional Data (VPH, highest/lowest) -->
-    <section id="additionalData" class="stats">
-      <p class="loading">Fetching additional video metrics...</p>
-    </section>
-
-    <!-- Uploads Over Time Chart -->
-    <section class="chart-container">
-      <h2>Uploads Over Time</h2>
-      <canvas id="uploadTrendChart"></canvas>
-    </section>
-
-    <!-- Video VPH Trend Chart -->
-    <section class="chart-container">
-      <h2>Video VPH Trend</h2>
-      <canvas id="vphChart"></canvas>
-    </section>
-
-    <!-- Subscriber Growth Chart -->
-    <section id="subscriberGrowth" class="stats">
-      <h2>Subscriber Growth</h2>
-      <canvas id="subscriberGrowthChart"></canvas>
-    </section>
-
-    <!-- Top Videos Table -->
-    <section id="topVideos" class="stats">
-      <p class="loading">Loading top performing videos...</p>
-    </section>
-
-    <!-- Collapsible Videos Section -->
-    <details open class="stats">
-      <summary>Videos</summary>
-      <div id="videoGridContainer"></div>
-    </details>
-
-    <!-- Collapsible Shorts Section -->
-    <details open class="stats">
-      <summary>YouTube Shorts</summary>
-      <div id="shortsContainer"></div>
-    </details>
-
-    <!-- Collapsible Posts Section -->
-    <details open class="stats">
-      <summary>Posts</summary>
-      <div id="channelPostsContainer">
-        <p class="loading">Loading posts...</p>
-      </div>
-    </details>
-
-    <!-- Recent Comments -->
-    <section id="recentComments" class="stats">
-      <p class="loading">Loading recent comments from the latest video...</p>
-    </section>
-
-    <!-- Alerts -->
-    <section id="alerts" class="stats">
-      <h2>Alerts & Notifications</h2>
-      <div id="alertsContainer"><p>No alerts.</p></div>
-    </section>
-
-    <!-- Export Subscriber Data -->
-    <section id="exportData" class="stats">
-      <h2>Export Historical Subscriber Data</h2>
-      <button id="exportButton">Export as CSV</button>
-      <pre id="exportOutput"></pre>
-    </section>
-
-    <!-- Predictive Analytics -->
-    <section id="predictions" class="stats">
-      <h2>Predictive Analytics</h2>
-      <div id="predictionsContainer">
-        <p>Predicted subscriber count in 24 hours: <span id="predictedSubscribers"></span></p>
-      </div>
-    </section>
-
-    <!-- Placeholders for Advanced Features -->
-    <section id="advancedAnalytics" class="stats">
-      <h2>Advanced Analytics</h2>
-      <p>
-        Detailed audience demographics, watch time, revenue estimates, and traffic sources require integration with the YouTube Analytics API.
-      </p>
-    </section>
-
-    <section id="customLayout" class="stats">
-      <h2>Customizable Layout</h2>
-      <p>Coming soon: Drag-and-drop widgets and theme customization!</p>
-    </section>
-
-    <section id="crossChannel" class="stats">
-      <h2>Cross-Channel Comparisons</h2>
-      <p>Feature requires integration of additional channel data.</p>
-    </section>
+    <h1>Beers To Drink Counter</h1>
+    <div class="counter" id="counter">0</div>
+    <p id="message">Ready for some beers?</p>
+    <button class="increment" id="incrementBtn">+ Beer</button>
+    <button class="decrement" id="decrementBtn">- Beer</button>
+    <button class="reset" id="resetBtn">Reset</button>
+    <button class="toggle-mode" id="toggleModeBtn">Toggle Dark Mode</button>
   </div>
+  <script>
+    // Initialize counter value
+    let count = 0;
 
-  <!-- Link to JS -->
-  <script src="script.js"></script>
+    // Reference the DOM elements
+    const counterEl = document.getElementById('counter');
+    const messageEl = document.getElementById('message');
+    const incrementBtn = document.getElementById('incrementBtn');
+    const decrementBtn = document.getElementById('decrementBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const toggleModeBtn = document.getElementById('toggleModeBtn');
+
+    // Update display function to handle both the counter and the witty messages
+    function updateDisplay() {
+      counterEl.textContent = count;
+      if (count === 0) {
+        messageEl.textContent = "Ready for some beers?";
+      } else if (count < 5) {
+        messageEl.textContent = count + " beer" + (count > 1 ? "s" : "") + " to drink. Cheers!";
+      } else {
+        messageEl.textContent = count + " beers? Now that's a party!";
+      }
+    }
+
+    // Event listeners for each button
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      updateDisplay();
+    });
+
+    decrementBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        updateDisplay();
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      count = 0;
+      updateDisplay();
+    });
+
+    toggleModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
