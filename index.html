@@ -103,17 +103,20 @@
     const resetBtn = document.getElementById('resetBtn');
     const toggleModeBtn = document.getElementById('toggleModeBtn');
 
-    // Update display function to handle both the counter and the witty messages
+    // Update display function with enhanced messages
     function updateDisplay() {
       counterEl.textContent = count;
       if (count === 0) {
         messageEl.textContent = "Ready for some beers?";
       } else if (count < 5) {
         messageEl.textContent = count + " beer" + (count > 1 ? "s" : "") + " to drink. Cheers!";
-      } else {
+      } else if (count < 10) {
         messageEl.textContent = count + " beers? Now that's a party!";
+      } else if (count < 15) {
+        messageEl.textContent = count + " beers? Wow, that's a lot! Maybe you should slow down.";
       } else {
-        messageE1.textContent = count + "beers, maybe you should slow down";
+        messageEl.textContent = count + " beers?! Are you trying to break the world record? Consider hydrating!";
+      }
     }
 
     // Event listeners for each button
